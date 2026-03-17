@@ -1,0 +1,92 @@
+{
+    "geode": "5.0.0",
+    "gd": {
+        "win": "2.2081",
+        "android": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
+    },
+    "id": "cheeseworks.fakeleaderboardrank",
+    "name": "Custom Rank",
+    "version": "1.0.0",
+    "developers": [
+        "Cheeseworks"
+    ],
+    "description": "Customize your leaderboard rank!",
+    "links": {
+        "source": "https://github.com/BlueWitherer/FakeLeaderboardRank",
+        "homepage": "https://www.cheeseworks.gay/",
+        "community": "https://www.dsc.gg/cheeseworks"
+    },
+    "tags": [
+        "offline",
+        "customization"
+    ],
+    "dependencies": {
+        "geode.node-ids": ">=1.22.0"
+    },
+    "api": {
+        "include": [
+            "include/*.hpp"
+        ]
+    },
+    "settings": {
+        "rank": {
+            "type": "int",
+            "name": "Leaderboard Rank",
+            "description": "Set your fake leaderboard rank.",
+            "default": 100,
+            "min": 1,
+            "max": 1000000,
+            "control": {
+                "input": true,
+                "slider": true,
+                "slider-step": 50,
+                "arrows": true,
+                "arrow-step": 375,
+                "big-arrows": true,
+                "big-arrow-step": 1250
+            }
+        },
+        "icon": {
+            "type": "string",
+            "name": "Trophy Icon",
+            "description": "Select the trophy icon to show alongside your rank.",
+            "default": "Top 100",
+            "one-of": [
+                "Top 1",
+                "Top 10",
+                "Top 50",
+                "Top 100",
+                "Top 200",
+                "Top 500",
+                "Top 1,000",
+                "Top 2,500",
+                "Top 5,000",
+                "Top 10,000",
+                "All"
+            ],
+            "enable-if": "!icon-auto",
+            "enable-if-description": "Disable 'Auto-select Trophy Icon' to select a trophy icon manually."
+        },
+        "icon-auto": {
+            "type": "bool",
+            "name": "Auto-select Trophy Icon",
+            "description": "Automatically select the trophy icon that will display alongside your rank. <co>This will override your selected *`Trophy Icon`* setting.</c>",
+            "default": true
+        },
+        "dev": {
+            "type": "title",
+            "name": "Developer Settings",
+            "description": "Settings to help with the development of this mod."
+        },
+        "simulate-ban": {
+            "type": "bool",
+            "name": "Simulate Leaderboard Ban",
+            "description": "Force the client to recognize your user as leaderboard banned.",
+            "default": false,
+            "requires-restart": true
+        }
+    },
+    "early-load": false
+}
