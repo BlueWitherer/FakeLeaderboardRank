@@ -13,12 +13,25 @@ Customize your leaderboard rank!
 ---
 
 ## About
-A **purely cosmetic** mod to change the "*Global Rank*" field of your profile.
+A **purely cosmetic** mod to locally change the "*Global Rank*" field of your account's profile page.
 
 ---
 
 ### Configuration
-In this mod's settings, you can find the settings you need to customize the leaderboard rank labels in your profile page.
+In this mod's settings, you can find the settings you need to customize the leaderboard rank labels in your profile page. You can change the trophy icon with any of the following options.
+
+- 🏆 **Top 1**
+- 🏆 Top 10
+- 🏆 Top 50
+- 🏆 Top 100
+- 🏆 Top 200
+- 🏆 Top 500
+- 🏆 Top 1,000
+- 🏆 Top 2,500
+- 🏆 Top 5,000
+- 🏆 Top 10,000
+
+🏆 All
 
 ---
 

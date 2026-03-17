@@ -67,11 +67,11 @@
                 "All"
             ],
             "enable-if": "!icon-auto",
-            "enable-if-description": "Disable 'Auto-select Trophy Icon' to select a trophy icon manually."
+            "enable-if-description": "Disable 'Auto Trophy Icon' to select a trophy icon."
         },
         "icon-auto": {
             "type": "bool",
-            "name": "Auto-select Trophy Icon",
+            "name": "Auto Trophy Icon",
             "description": "Automatically select the trophy icon that will display alongside your rank. <co>This will override your selected *`Trophy Icon`* setting.</c>",
             "default": true
         },
