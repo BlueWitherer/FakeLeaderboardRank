@@ -8,9 +8,9 @@ using namespace geode::prelude;
 
 static constexpr int s_zOrder = 10;
 
-static constexpr CCPoint s_trophyPos = {120.5f, 283.f};
 static constexpr CCPoint s_rankHintPos = {160.5f, 289.f};
-static constexpr CCPoint s_rankPos = {160.5f, 277.f};
+static constexpr CCPoint s_rankPos = {s_rankHintPos.x, 277.f};
+static constexpr CCPoint s_trophyPos = {s_rankPos.x - 40.f, 283.f};
 
 static constexpr float s_rankScale = 0.6f;
 
