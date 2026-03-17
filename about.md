@@ -29,6 +29,8 @@ In this <cg>mod's settings</c>, you can find the settings you need to customize 
 
 ![🏆](frame:rankIcon_all_001.png?scale=0.5) All
 
+> ![✳️](frame:collaborationIcon_001.png) <cg>*You can find a shortcut to the mod settings in your profile's settings pop-up.*</c>
+
 ---
 
 ![🗨️](frame:gj_discordIcon_001.png?scale=0.375) **If you need help, join my [support Discord server](https://www.dsc.gg/cheeseworks) and ask! :)**

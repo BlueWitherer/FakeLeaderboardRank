@@ -2,7 +2,11 @@
 
 #include <Geode/Geode.hpp>
 
+#include <Geode/ui/GeodeUI.hpp>
+#include <Geode/ui/Button.hpp>
+
 #include <Geode/modify/ProfilePage.hpp>
+#include <Geode/modify/GJAccountSettingsLayer.hpp>
 
 using namespace geode::prelude;
 
@@ -10,7 +14,6 @@ static constexpr int s_zOrder = 10;
 
 static constexpr CCPoint s_rankHintPos = {160.5f, 289.f};
 static constexpr CCPoint s_rankPos = {s_rankHintPos.x, 277.f};
-static constexpr CCPoint s_trophyPos = {s_rankPos.x - 40.f, 283.f};
 
 static constexpr float s_rankScale = 0.6f;
 
@@ -30,18 +33,15 @@ namespace settings {
 };
 
 namespace nodes {
-    constexpr auto icon = "global-rank-icon";
     constexpr auto label = "global-rank-label";
     constexpr auto hint = "global-rank-hint";
+    constexpr auto icon = "global-rank-icon";
 };
 
 class $modify(FLRProfilePage, ProfilePage) {
     static void onModify(auto& self) {
         utils::StringMap<std::shared_ptr<Hook>>& hooks = self.m_hooks;
-
-        for (auto& hook : hooks | std::views::values) {
-            (void)self.setHookPriorityPre(hook->getDisplayName(), Priority::FirstPre);
-        };
+        for (auto& hook : hooks | std::views::values) (void)self.setHookPriorityPre(hook->getDisplayName(), Priority::FirstPre);
     };
 
     struct Fields {
@@ -66,11 +66,11 @@ class $modify(FLRProfilePage, ProfilePage) {
 
         if (m_ownProfile || score->isCurrentUser()) {
             WeakRef<CCSprite> globalRankIcon = nullptr;
-            bool isHint = false;
+            WeakRef<CCSprite> globalRankHint = nullptr;
 
             auto const rankStr = utils::numToString(f->fakeRank);
 
-            if (score->m_globalRank <= 0) {  // check for leaderboard ban
+            if (score->m_globalRank <= 0) {  // check for leaderboard ban, nodes arent created if so
                 log::warn("player {} is leaderboard banned!", score->m_userName);
 
                 auto newLabel = CCLabelBMFont::create(rankStr.c_str(), "chatFont.fnt");
@@ -80,31 +80,32 @@ class $modify(FLRProfilePage, ProfilePage) {
 
                 m_mainLayer->addChild(newLabel, s_zOrder);
                 f->globalRankLabel = newLabel;
+
+                auto newHint = CCSprite::createWithSpriteFrameName("gj_globalRankTxt_001.png");
+                newHint->setID(nodes::hint);
+                newHint->setPosition(s_rankHintPos);
+
+                m_mainLayer->addChild(newHint, s_zOrder);
+                globalRankHint = newHint;
             } else {
                 log::info("player {} is on the leaderboards!", score->m_userName);
 
                 globalRankIcon = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID(nodes::icon));
-                if (typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID(nodes::hint))) isHint = true;
+                globalRankHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID(nodes::hint));
 
                 if (auto label = typeinfo_cast<CCLabelBMFont*>(m_mainLayer->getChildByID(nodes::label))) f->globalRankLabel = label;
             };
 
             auto newIcon = CCSprite::createWithSpriteFrameName(f->autoIcon ? getTrophySpriteByRank(f->fakeRank) : getTrophySprite(f->icon));
             newIcon->setID(nodes::icon);
-            newIcon->setPosition(s_trophyPos);
 
             if (auto label = f->globalRankLabel.lock()) label->setString(rankStr.c_str());
+            if (auto hint = globalRankHint.lock()) newIcon->setPosition({(hint->getPositionX() - hint->getScaledContentWidth()) + 3.f, 283.f});
             if (auto icon = globalRankIcon.lock()) icon->removeMeAndCleanup();
 
             m_mainLayer->addChild(newIcon, s_zOrder);
-
-            if (!isHint) {
-                auto newHint = CCSprite::createWithSpriteFrameName("gj_globalRankTxt_001.png");
-                newHint->setID(nodes::hint);
-                newHint->setPosition(s_rankHintPos);
-
-                m_mainLayer->addChild(newHint, s_zOrder);
-            };
+        } else {
+            ProfilePage::loadPageFromUserInfo(score);
         };
     };
 
@@ -136,5 +137,29 @@ class $modify(FLRProfilePage, ProfilePage) {
         if (rank <= 10000) return getTrophySprite(settings::top10000);
 
         return getTrophySprite(settings::all);
+    };
+};
+
+class $modify(FLRGJAccountSettingsLayer, GJAccountSettingsLayer) {
+    bool init(int accountID) {
+        if (!GJAccountSettingsLayer::init(accountID)) return false;
+
+        auto settingsBtn = Button::createWithNode(
+            CircleButtonSprite::createWithSpriteFrameName(
+                "rankIcon_1_001.png",
+                1.125f,
+                CircleBaseColor::Green,
+                CircleBaseSize::Small),
+            [](auto) {
+                openSettingsPopup(Mod::get());
+            });
+        settingsBtn->setID("rank-settings-btn"_spr);
+        settingsBtn->setScale(0.875f);
+        settingsBtn->setPosition({(m_mainLayer->getScaledContentWidth() / 2.f) + 190.f, 20.f});
+        settingsBtn->setTouchPriority(-999);  // fuck this layer
+
+        m_mainLayer->addChild(settingsBtn, 9);
+
+        return true;
     };
 };

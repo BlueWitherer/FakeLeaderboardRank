@@ -8,7 +8,7 @@
     },
     "id": "cheeseworks.fakeleaderboardrank",
     "name": "Custom Rank",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "developers": [
         "Cheeseworks"
     ],
@@ -73,12 +73,12 @@
         "dev": {
             "type": "title",
             "name": "Developer Settings",
-            "description": "Settings to help with the development of this mod."
+            "description": "Settings for developers to help with the development of this mod."
         },
         "simulate-ban": {
             "type": "bool",
             "name": "Simulate Leaderboard Ban",
-            "description": "Force the client to recognize your user as leaderboard banned.",
+            "description": "Force the client to recognize all users as leaderboard banned. <cr>This may cause unexpected issues!</c>",
             "default": false,
             "requires-restart": true
         }
