@@ -1,5 +1,3 @@
-#include <ranges>
-
 #include <Geode/Geode.hpp>
 
 #include <Geode/ui/GeodeUI.hpp>
@@ -10,12 +8,12 @@
 
 using namespace geode::prelude;
 
-static constexpr int s_zOrder = 10;
+constexpr int s_zOrder = 10;
 
-static constexpr CCPoint s_rankHintPos = {160.5f, 289.f};
-static constexpr CCPoint s_rankPos = {s_rankHintPos.x, 277.f};
+constexpr CCPoint s_rankHintPos = {160.5f, 289.f};
+constexpr CCPoint s_rankPos = {s_rankHintPos.x, 277.f};
 
-static constexpr float s_rankScale = 0.6f;
+constexpr float s_rankScale = 0.6f;
 
 namespace settings {
     constexpr auto top1 = "Top 1";
@@ -39,11 +37,6 @@ namespace nodes {
 };
 
 class $modify(FLRProfilePage, ProfilePage) {
-    static void onModify(auto& self) {
-        utils::StringMap<std::shared_ptr<Hook>>& hooks = self.m_hooks;
-        for (auto& hook : hooks | std::views::values) (void)self.setHookPriorityPre(hook->getDisplayName(), Priority::FirstPre);
-    };
-
     struct Fields {
         WeakRef<CCLabelBMFont> globalRankLabel = nullptr;
 
@@ -97,11 +90,11 @@ class $modify(FLRProfilePage, ProfilePage) {
             };
 
             auto newIcon = CCSprite::createWithSpriteFrameName(f->autoIcon ? getTrophySpriteByRank(f->fakeRank) : getTrophySprite(f->icon));
-            newIcon->setID(nodes::icon);
+            newIcon->setID("trophy"_spr);
 
             if (auto label = f->globalRankLabel.lock()) label->setString(rankStr.c_str());
             if (auto hint = globalRankHint.lock()) newIcon->setPosition({(hint->getPositionX() - hint->getScaledContentWidth()) + 3.f, 283.f});
-            if (auto icon = globalRankIcon.lock()) icon->removeMeAndCleanup();
+            if (auto icon = globalRankIcon.lock()) icon->setVisible(false);
 
             m_mainLayer->addChild(newIcon, s_zOrder);
         } else {
