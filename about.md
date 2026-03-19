@@ -14,7 +14,7 @@ A **purely cosmetic** mod to locally change the "*Global Rank*" field of your ac
 ---
 
 ### Configuration
-In this <cg>mod's settings</c>, you can find the settings you need to customize the leaderboard rank labels in your profile page. You can <cy>change the trophy icon</c> with any of the following options.
+In this <cg>mod's settings</c>, you can find the options you need to customize the leaderboard rank labels in your profile page. You can <cy>change the trophy icon</c> with any of the following options.
 
 - ![🏆](frame:rankIcon_1_001.png?scale=0.5) **<cy>Top 1</c>**
 - ![🏆](frame:rankIcon_top10_001.png?scale=0.5) <cc>Top 10</c>
