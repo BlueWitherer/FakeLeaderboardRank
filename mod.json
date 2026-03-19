@@ -20,7 +20,8 @@
     },
     "tags": [
         "offline",
-        "customization"
+        "customization",
+        "interface"
     ],
     "dependencies": {
         "geode.node-ids": ">=1.22.0"
