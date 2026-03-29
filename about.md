@@ -2,7 +2,7 @@
 **Customize your leaderboard rank!**
 
 *by [Cheeseworks](user:6408873)!*
-###### *<cd>Commissioned</c>*
+###### *[Commissioned](https://kofi.cheeseworks.gay/)*
 
 > ![✳️](frame:collaborationIcon_001.png) <cg>*This mod has settings you can utilize to customize your experience.*</c>
 
@@ -23,9 +23,9 @@ In this <cg>mod's settings</c>, you can find the options you need to customize t
 - ![🏆](frame:rankIcon_top200_001.png?scale=0.5) <cg>Top 200</c>
 - ![🏆](frame:rankIcon_top500_001.png?scale=0.5) <cj>Top 500</c>
 - ![🏆](frame:rankIcon_top1000_001.png?scale=0.5) <cd>Top 1,000</c>
-- ![🏆](frame:rankIcon_top2500_001.png?scale=0.5) <cr>Top 2,500</c>
-- ![🏆](frame:rankIcon_top5000_001.png?scale=0.5) <cl>Top 5,000</c>
-- ![🏆](frame:rankIcon_top10000_001.png?scale=0.5) <ca>Top 10,000</c>
+- ![🏆](frame:rankIcon_top2500_001.png?scale=0.5) <cr>Top 5,000</c>
+- ![🏆](frame:rankIcon_top5000_001.png?scale=0.5) <cl>Top 10,000</c>
+- ![🏆](frame:rankIcon_top10000_001.png?scale=0.5) <ca>Top 50,000</c>
 
 ![🏆](frame:rankIcon_all_001.png?scale=0.5) All
 

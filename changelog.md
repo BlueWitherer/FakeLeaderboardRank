@@ -1,3 +1,6 @@
+# v1.0.3 
+- Correct labeling for trophy icons
+
 # v1.0.2 
 - Improve stability
 

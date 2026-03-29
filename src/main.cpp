@@ -23,9 +23,9 @@ namespace settings {
     constexpr auto top200 = "Top 200";
     constexpr auto top500 = "Top 500";
     constexpr auto top1000 = "Top 1,000";
-    constexpr auto top2500 = "Top 2,500";
     constexpr auto top5000 = "Top 5,000";
     constexpr auto top10000 = "Top 10,000";
+    constexpr auto top50000 = "Top 50,000";
 
     constexpr auto all = "All";
 };
@@ -36,7 +36,7 @@ namespace nodes {
     constexpr auto icon = "global-rank-icon";
 };
 
-class $modify(FLRProfilePage, ProfilePage) {
+class $modify(CRProfilePage, ProfilePage) {
     struct Fields {
         WeakRef<CCLabelBMFont> globalRankLabel = nullptr;
 
@@ -110,9 +110,9 @@ class $modify(FLRProfilePage, ProfilePage) {
         if (setting == settings::top200) return "rankIcon_top200_001.png";
         if (setting == settings::top500) return "rankIcon_top500_001.png";
         if (setting == settings::top1000) return "rankIcon_top1000_001.png";
-        if (setting == settings::top2500) return "rankIcon_top2500_001.png";
-        if (setting == settings::top5000) return "rankIcon_top5000_001.png";
-        if (setting == settings::top10000) return "rankIcon_top10000_001.png";
+        if (setting == settings::top5000) return "rankIcon_top2500_001.png";    // thanks rob
+        if (setting == settings::top10000) return "rankIcon_top5000_001.png";   // thanks rob
+        if (setting == settings::top50000) return "rankIcon_top10000_001.png";  // thanks rob
 
         return "rankIcon_all_001.png";
     };
@@ -125,15 +125,15 @@ class $modify(FLRProfilePage, ProfilePage) {
         if (rank <= 200) return getTrophySprite(settings::top200);
         if (rank <= 500) return getTrophySprite(settings::top500);
         if (rank <= 1000) return getTrophySprite(settings::top1000);
-        if (rank <= 2500) return getTrophySprite(settings::top2500);
         if (rank <= 5000) return getTrophySprite(settings::top5000);
         if (rank <= 10000) return getTrophySprite(settings::top10000);
+        if (rank <= 50000) return getTrophySprite(settings::top50000);
 
         return getTrophySprite(settings::all);
     };
 };
 
-class $modify(FLRGJAccountSettingsLayer, GJAccountSettingsLayer) {
+class $modify(CRGJAccountSettingsLayer, GJAccountSettingsLayer) {
     bool init(int accountID) {
         if (!GJAccountSettingsLayer::init(accountID)) return false;
 

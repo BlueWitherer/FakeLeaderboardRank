@@ -27,9 +27,9 @@ In this mod's settings, you can find the options you need to customize the leade
 - 🏆 Top 200
 - 🏆 Top 500
 - 🏆 Top 1,000
-- 🏆 Top 2,500
 - 🏆 Top 5,000
 - 🏆 Top 10,000
+- 🏆 Top 50,000
 
 🏆 All
 
