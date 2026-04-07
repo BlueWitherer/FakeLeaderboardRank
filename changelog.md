@@ -1,3 +1,6 @@
+# v1.0.4 
+- Fixed UI positioning on other aspect ratios
+
 # v1.0.3 
 - Correct labeling for trophy icons
 

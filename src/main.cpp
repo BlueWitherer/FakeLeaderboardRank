@@ -93,7 +93,7 @@ class $modify(CRProfilePage, ProfilePage) {
             newIcon->setID("trophy"_spr);
 
             if (auto label = f->globalRankLabel.lock()) label->setString(rankStr.c_str());
-            if (auto hint = globalRankHint.lock()) newIcon->setPosition({(hint->getPositionX() - hint->getScaledContentWidth()) + 3.f, 283.f});
+            if (auto hint = globalRankHint.lock()) newIcon->setPosition({(hint->getPositionX() - hint->getScaledContentWidth()) + 3.f, (m_mainLayer->getScaledContentHeight() / 2.f) + 123.f});
             if (auto icon = globalRankIcon.lock()) icon->setVisible(false);
 
             m_mainLayer->addChild(newIcon, s_zOrder);
@@ -148,7 +148,7 @@ class $modify(CRGJAccountSettingsLayer, GJAccountSettingsLayer) {
             });
         settingsBtn->setID("rank-settings-btn"_spr);
         settingsBtn->setScale(0.875f);
-        settingsBtn->setPosition({(m_mainLayer->getScaledContentWidth() / 2.f) + 190.f, 20.f});
+        settingsBtn->setPosition({(m_mainLayer->getScaledContentWidth() / 2.f) + 190.f, (m_mainLayer->getScaledContentHeight() / 2.f) - 140.f});
         settingsBtn->setTouchPriority(-999);  // fuck this layer
 
         m_mainLayer->addChild(settingsBtn, 9);
